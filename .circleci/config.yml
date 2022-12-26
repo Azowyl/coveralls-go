@@ -3,58 +3,58 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.2
+    node: circleci/node@5.0.2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
     install:
-      executor: node/default
-      steps:
-        - checkout
-        - node/install-packages:
-            pkg-manager: yarn
-        - persist_to_workspace:
-            root: .
-            paths:
-              - ./
+        executor: node/default
+        steps:
+            - checkout
+            - node/install-packages:
+                  pkg-manager: yarn
+            - persist_to_workspace:
+                  root: .
+                  paths:
+                      - ./
     lint:
         executor: node/default
         steps:
-          - attach_workspace:
-              at: .
-          - run:
-              name: 'Run eslint'
-              command: 'yarn lint'
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: 'Run eslint'
+                  command: 'yarn lint'
     prettier:
         executor: node/default
         steps:
-          - attach_workspace:
-              at: .
-          - run:
-              name: 'Run prettier'
-              command: 'yarn prettier'
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: 'Run prettier'
+                  command: 'yarn prettier'
     test:
         executor: node/default
         steps:
-          - attach_workspace:
-              at: .
-          - run:
-              name: 'Run tests'
-              command: 'yarn test'
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: 'Run tests'
+                  command: 'yarn test'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
     dev:
-      jobs:
-        - install
-        - lint:
-            requires:
-              - install
-        - prettier:
-            requires:
-              - lint
-        - test:
-            requires:
-              - prettier
+        jobs:
+            - install
+            - lint:
+                  requires:
+                      - install
+            - prettier:
+                  requires:
+                      - lint
+            - test:
+                  requires:
+                      - prettier
