@@ -9,6 +9,8 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
     install:
+      docker:
+        - image: cimg/base:stable
       steps:
         - checkout
         - node/install-packages:
@@ -19,37 +21,38 @@ jobs:
               - .
     lint:
         docker:
-            - image: cimg/base:stable
+          - image: cimg/base:stable
         steps:
-            - attach_workspace:
-                at: ~/coveralls-go
-            - run:
-                  name: 'Run eslint'
-                  command: 'yarn lint'
+          - attach_workspace:
+              at: ~/coveralls-go
+          - run:
+              name: 'Run eslint'
+              command: 'yarn lint'
     prettier:
         docker:
-            - image: cimg/base:stable
+          - image: cimg/base:stable
         steps:
-            - attach_workspace:
-                at: ~/coveralls-go
-            - run:
-                  name: 'Run prettier'
-                  command: 'yarn prettier'
+          - attach_workspace:
+              at: ~/coveralls-go
+          - run:
+              name: 'Run prettier'
+              command: 'yarn prettier'
     test:
         docker:
-            - image: cimg/base:stable
+          - image: cimg/base:stable
         steps:
-            - attach_workspace:
-                at: ~/coveralls-go
-            - run:
-                  name: 'Run tests'
-                  command: 'yarn test'
+          - attach_workspace:
+              at: ~/coveralls-go
+          - run:
+              name: 'Run tests'
+              command: 'yarn test'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
     dev:
-        jobs:
-            - lint
-            - prettier
-            - test
+      jobs:
+        - install
+        - lint
+        - prettier
+        - test
