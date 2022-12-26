@@ -15,14 +15,14 @@ jobs:
         - node/install-packages:
             pkg-manager: yarn
         - persist_to_workspace:
-            root: ~/coveralls-go
+            root: .
             paths:
-              - .
+              - ./
     lint:
         executor: node/default
         steps:
           - attach_workspace:
-              at: ~/coveralls-go
+              at: .
           - run:
               name: 'Run eslint'
               command: 'yarn lint'
@@ -30,7 +30,7 @@ jobs:
         executor: node/default
         steps:
           - attach_workspace:
-              at: ~/coveralls-go
+              at: .
           - run:
               name: 'Run prettier'
               command: 'yarn prettier'
@@ -38,7 +38,7 @@ jobs:
         executor: node/default
         steps:
           - attach_workspace:
-              at: ~/coveralls-go
+              at: .
           - run:
               name: 'Run tests'
               command: 'yarn test'
