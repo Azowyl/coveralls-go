@@ -1,0 +1,1 @@
+console.log('Coveralls Integration')
