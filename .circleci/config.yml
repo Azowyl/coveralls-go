@@ -9,8 +9,7 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
     install:
-      docker:
-        - image: cimg/base:stable
+      executor: node/default
       steps:
         - checkout
         - node/install-packages:
@@ -20,8 +19,7 @@ jobs:
             paths:
               - .
     lint:
-        docker:
-          - image: cimg/base:stable
+        executor: node/default
         steps:
           - attach_workspace:
               at: ~/coveralls-go
@@ -29,8 +27,7 @@ jobs:
               name: 'Run eslint'
               command: 'yarn lint'
     prettier:
-        docker:
-          - image: cimg/base:stable
+        executor: node/default
         steps:
           - attach_workspace:
               at: ~/coveralls-go
@@ -38,8 +35,7 @@ jobs:
               name: 'Run prettier'
               command: 'yarn prettier'
     test:
-        docker:
-          - image: cimg/base:stable
+        executor: node/default
         steps:
           - attach_workspace:
               at: ~/coveralls-go
@@ -53,6 +49,12 @@ workflows:
     dev:
       jobs:
         - install
-        - lint
-        - prettier
-        - test
+        - lint:
+            requires:
+              - install
+        - prettier:
+            requires:
+              - lint
+        - test:
+            requires:
+              - prettier
