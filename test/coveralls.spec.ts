@@ -1,11 +1,11 @@
 import Coveralls from '../src/coveralls';
 import Environment from '../src/environment';
-import axios from 'axios'
+import axios from 'axios';
 
 jest.mock('axios');
 jest.mock('js-md5', () => ({
-    digest: jest.fn().mockReturnValue('sourceDigest')
-}))
+    digest: jest.fn().mockReturnValue('sourceDigest'),
+}));
 describe('Coveralls', () => {
     let coveralls: Coveralls;
 
@@ -27,10 +27,12 @@ describe('Coveralls', () => {
                     require.resolve('./fixtures/repo/coverage/lcov.info')
                 );
 
-                expect(axios).toHaveBeenCalledWith(expect.objectContaining({
-                    method: 'POST',
-                    url: 'https://coveralls.io/api/v1/jobs',
-                }));
+                expect(axios).toHaveBeenCalledWith(
+                    expect.objectContaining({
+                        method: 'POST',
+                        url: 'https://coveralls.io/api/v1/jobs',
+                    })
+                );
             });
         });
     });
