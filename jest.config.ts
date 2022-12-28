@@ -9,5 +9,5 @@ export default {
     coverageDirectory: 'coverage',
     collectCoverageFrom: ['src/**/*.ts', '!src/index.ts'],
     coverageProvider: 'babel',
-    setupFiles: ['./test/testEnv.ts']
-}
+    setupFiles: ['./test/testEnv.ts'],
+};

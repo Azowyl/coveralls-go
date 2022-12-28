@@ -6,9 +6,7 @@ export const camelToSnake = (
     }
 
     if (Array.isArray(obj)) {
-        return obj.map(
-            (item) => camelToSnake(item) as Record<string, unknown>
-        );
+        return obj.map((item) => camelToSnake(item) as Record<string, unknown>);
     }
 
     if (typeof obj === 'object') {

@@ -1,4 +1,4 @@
-import CoverallsRequestBuilder from '../coverallsRequestBuilder'
+import CoverallsRequestBuilder from '../coverallsRequestBuilder';
 
 interface CoverallsParser {
     parse: (filePath: string) => CoverallsRequestBuilder;

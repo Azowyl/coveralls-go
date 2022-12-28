@@ -1,5 +1,5 @@
 describe('index', () => {
     it('passes', () => {
-        expect(true).toEqual(true)
-    })
-})
+        expect(true).toEqual(true);
+    });
+});

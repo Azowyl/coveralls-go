@@ -1,5 +1,5 @@
-import * as FileUtils from './file'
-import Environment from './environment'
+import * as FileUtils from './file';
+import Environment from './environment';
 
 interface CoverallsSourceFile {
     name: string;
@@ -25,19 +25,22 @@ class CoverallsRequestBuilder {
         repoToken: '',
         servicePullRequest: '',
         commitSha: '',
-        sourceFiles: []
-    }
+        sourceFiles: [],
+    };
 
     withService(service: Service): CoverallsRequestBuilder {
-        this.setValuesBasedOnService(service)
+        this.setValuesBasedOnService(service);
         return this;
     }
 
-    withSourceFile(filePath: string, coverage: Array<number | null>): CoverallsRequestBuilder {
+    withSourceFile(
+        filePath: string,
+        coverage: Array<number | null>
+    ): CoverallsRequestBuilder {
         this.requestObject.sourceFiles = this.requestObject.sourceFiles.concat({
             name: filePath,
             sourceDigest: FileUtils.md5Digest(filePath),
-            coverage
+            coverage,
         });
 
         return this;
@@ -53,8 +56,10 @@ class CoverallsRequestBuilder {
 
         if (Environment.CIRCLECI) {
             this.requestObject.serviceJobId = Environment.CIRCLE_BUILD_NUM;
-            this.requestObject.servicePullRequest = Environment.CIRCLE_PULL_REQUEST_ID;
-            this.requestObject.servicePullRequest = Environment.CIRCLE_COMMIT_SHA;
+            this.requestObject.servicePullRequest =
+                Environment.CIRCLE_PULL_REQUEST_ID;
+            this.requestObject.servicePullRequest =
+                Environment.CIRCLE_COMMIT_SHA;
             this.requestObject.commitSha = Environment.CIRCLE_COMMIT_SHA;
         }
     }

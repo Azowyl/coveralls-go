@@ -9,8 +9,11 @@ describe('LcovToCoverallsParser', () => {
 
     describe('parse', () => {
         it('returns coveralls object', () => {
-            expect(parser.parse(require.resolve('../fixtures/repo/coverage/lcov.info')))
-                .toMatchSnapshot();
+            expect(
+                parser.parse(
+                    require.resolve('../fixtures/repo/coverage/lcov.info')
+                )
+            ).toMatchSnapshot();
         });
     });
 });
