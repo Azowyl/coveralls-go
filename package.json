@@ -12,6 +12,7 @@
         "@types/js-md5": "^0.7.0",
         "@types/lcov-parse": "^1.0.0",
         "@types/node": "^18.11.18",
+        "axios": "^1.2.1",
         "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
         "js-md5": "^0.7.3",

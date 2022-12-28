@@ -1,5 +1,5 @@
 import CoverallsParser from './coveralls'
-import CoverallsRequestBuilder, { CoverallsRequestObject } from '../coverallsRequestBuilder'
+import CoverallsRequestBuilder from '../coverallsRequestBuilder'
 import parseLCOV, { LCOVRecord } from 'parse-lcov'
 import * as FileUtils from '../file'
 
@@ -9,11 +9,11 @@ class LcovToCoverallsParser implements CoverallsParser {
         this.coverageRequestBuilder = new CoverallsRequestBuilder();
     }
 
-    parse(lcovFilePath: string): CoverallsRequestObject {
+    parse(lcovFilePath: string): CoverallsRequestBuilder {
         return this.getCoverallsRequestObject(parseLCOV(FileUtils.source(lcovFilePath)));
     }
 
-    private getCoverallsRequestObject(lcovData: LCOVRecord[]): CoverallsRequestObject {
+    private getCoverallsRequestObject(lcovData: LCOVRecord[]): CoverallsRequestBuilder {
         lcovData.forEach((data) => {
             this.coverageRequestBuilder.withSourceFile(
                 data.file,
@@ -21,7 +21,7 @@ class LcovToCoverallsParser implements CoverallsParser {
             )
         })
 
-        return this.coverageRequestBuilder.build();
+        return this.coverageRequestBuilder;
     }
 
     private getLinesCoverage(lines: LCOVRecord['lines'], linesCount: number): Array<null | number> {

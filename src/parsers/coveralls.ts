@@ -1,7 +1,7 @@
-import { CoverallsRequestObject } from '../coverallsRequestBuilder'
+import CoverallsRequestBuilder from '../coverallsRequestBuilder'
 
 interface CoverallsParser {
-    parse: (filePath: string) => CoverallsRequestObject;
+    parse: (filePath: string) => CoverallsRequestBuilder;
 }
 
 export default CoverallsParser;

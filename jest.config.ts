@@ -8,5 +8,6 @@ export default {
     collectCoverage: true,
     coverageDirectory: 'coverage',
     collectCoverageFrom: ['src/**/*.ts'],
-    coverageProvider: 'babel'
+    coverageProvider: 'babel',
+    setupFiles: ['./test/testEnv.ts']
 }

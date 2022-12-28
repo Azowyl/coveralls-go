@@ -1,6 +1,5 @@
-import { readFileSync } from 'fs'
-import md5 from 'js-md5'
 import * as FileUtils from './file'
+import Environment from './environment'
 
 interface CoverallsSourceFile {
     name: string;
@@ -11,22 +10,26 @@ interface CoverallsSourceFile {
 export interface CoverallsRequestObject {
     serviceJobId: string;
     serviceName: string;
+    repoToken: string;
+    servicePullRequest: string;
+    commitSha: string;
     sourceFiles: CoverallsSourceFile[];
 }
+
+export type Service = 'circleci';
+
 class CoverallsRequestBuilder {
     private readonly requestObject: CoverallsRequestObject = {
         serviceJobId: '',
         serviceName: '',
+        repoToken: '',
+        servicePullRequest: '',
+        commitSha: '',
         sourceFiles: []
     }
 
-    withServiceName(name: string): CoverallsRequestBuilder {
-        this.requestObject.serviceName = name;
-        return this;
-    }
-
-    withServiceJobId(id: string): CoverallsRequestBuilder {
-        this.requestObject.serviceJobId = id;
+    withService(service: Service): CoverallsRequestBuilder {
+        this.setValuesBasedOnService(service)
         return this;
     }
 
@@ -42,6 +45,18 @@ class CoverallsRequestBuilder {
 
     build(): CoverallsRequestObject {
         return this.requestObject;
+    }
+
+    private setValuesBasedOnService(service: Service): void {
+        this.requestObject.serviceName = service;
+        this.requestObject.repoToken = Environment.REPO_TOKEN;
+
+        if (Environment.CIRCLECI) {
+            this.requestObject.serviceJobId = Environment.CIRCLE_BUILD_NUM;
+            this.requestObject.servicePullRequest = Environment.CIRCLE_PULL_REQUEST_ID;
+            this.requestObject.servicePullRequest = Environment.CIRCLE_COMMIT_SHA;
+            this.requestObject.commitSha = Environment.CIRCLE_COMMIT_SHA;
+        }
     }
 }
 
