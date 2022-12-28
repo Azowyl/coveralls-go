@@ -15,6 +15,7 @@
         "axios": "^1.2.1",
         "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
+        "form-data": "^4.0.0",
         "js-md5": "^0.7.3",
         "nodemon": "^2.0.20",
         "parse-lcov": "^1.0.4",
