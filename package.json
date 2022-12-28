@@ -25,7 +25,8 @@
     "scripts": {
         "start:dev": "npx nodemon",
         "build": "tsc",
-        "test": "jest --ci --runInBand --coverage",
+        "test": "jest",
+        "test:ci": "jest --ci --runInBand --coverage && ts-node ./src/index.ts",
         "lint": "yarn eslint .",
         "prettier": "prettier --check ."
     },
