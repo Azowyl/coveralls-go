@@ -20,7 +20,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
-test/fixtures/repo/coverage
+coverage
 *.lcov
 
 # nyc test coverage
