@@ -41,7 +41,7 @@ jobs:
                   at: .
             - run:
                   name: 'debug'
-                  command: ls
+                  command: ls 'test\fixtures'
             - run:
                   name: 'Run tests'
                   command: 'yarn test'
