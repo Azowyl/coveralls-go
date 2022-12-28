@@ -16,9 +16,10 @@ CoverallsRequestBuilder {
           null,
           null,
           null,
+          null,
         ],
         "name": "test\\fixtures\\repo\\src\\covered.ts",
-        "sourceDigest": "140,168,249,0,121,54,129,154,139,92,203,15,88,45,92,124",
+        "sourceDigest": "sourceDigest",
       },
       {
         "coverage": [
@@ -27,9 +28,10 @@ CoverallsRequestBuilder {
           null,
           null,
           null,
+          null,
         ],
         "name": "test\\fixtures\\repo\\src\\uncovered.ts",
-        "sourceDigest": "149,19,108,194,151,64,77,80,173,81,82,111,208,136,38,202",
+        "sourceDigest": "sourceDigest",
       },
     ],
   },

@@ -23,7 +23,7 @@ class Coveralls {
             method: 'POST',
             url: 'https://coveralls.io/api/v1/jobs',
             data: formData,
-            headers: formData.getHeaders(),
+            headers: formData.getHeaders()
         });
     }
 }
