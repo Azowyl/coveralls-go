@@ -7,7 +7,7 @@ export default {
     clearMocks: true,
     collectCoverage: true,
     coverageDirectory: 'coverage',
-    collectCoverageFrom: ['src/**/*.ts'],
+    collectCoverageFrom: ['src/**/*.ts', '!src/index.ts'],
     coverageProvider: 'babel',
     setupFiles: ['./test/testEnv.ts']
 }
