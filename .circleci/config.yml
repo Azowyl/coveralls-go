@@ -40,6 +40,9 @@ jobs:
             - attach_workspace:
                   at: .
             - run:
+                  name: 'debug'
+                  command: ls
+            - run:
                   name: 'Run tests'
                   command: 'yarn test'
 
