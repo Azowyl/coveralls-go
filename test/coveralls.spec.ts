@@ -42,6 +42,8 @@ describe('Coveralls', () => {
                 Environment.CIRCLE_COMMIT_SHA =
                     '0d15c65a92b7c3642883a528da8dd4841accde21';
                 Environment.CIRCLE_PULL_REQUEST_ID = '123';
+                Environment.REPO_TOKEN = 'token';
+                Environment.CIRCLE_AUTHOR = 'test';
             });
 
             itMakesRequestWithCorrectParams();
