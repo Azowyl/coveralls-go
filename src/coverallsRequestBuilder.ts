@@ -1,22 +1,23 @@
 import * as FileUtils from './file';
 import Environment from './environment';
+import * as child_process from 'child_process';
 
-// interface CoverallsGitInfo {
-//     head: {
-//         id: string;
-//         authorName: string;
-//         authorEmail: string;
-//         committerName: string;
-//         committerEmail: string;
-//         message: string;
-//     }
-//
-//     branch: string;
-//     remotes: Array<{
-//         name: string;
-//         url: string;
-//     }>
-// }
+interface CoverallsGitInfo {
+    head: {
+        id: string;
+        authorName: string;
+        authorEmail?: string;
+        committerName?: string;
+        committerEmail?: string;
+        message: string;
+    };
+
+    branch: string;
+    remotes?: Array<{
+        name: string;
+        url: string;
+    }>;
+}
 
 export interface CoverallsSourceFile {
     name: string;
@@ -30,7 +31,7 @@ export interface CoverallsRequestObject {
     repoToken: string;
     servicePullRequest: string;
     commitSha?: string;
-    git?: string;
+    git?: CoverallsGitInfo;
     sourceFiles: CoverallsSourceFile[];
 }
 
@@ -76,7 +77,26 @@ class CoverallsRequestBuilder {
             this.requestObject.serviceJobId = Environment.CIRCLE_BUILD_NUM;
             this.requestObject.servicePullRequest =
                 Environment.CIRCLE_PULL_REQUEST_ID;
-            this.requestObject.commitSha = Environment.CIRCLE_COMMIT_SHA;
+            this.requestObject.git = {
+                head: {
+                    id: Environment.CIRCLE_COMMIT_SHA,
+                    authorName: Environment.CIRCLE_AUTHOR,
+                    message: child_process
+                        .execSync('git log -1 --pretty=%B')
+                        .toString(),
+                },
+                branch: child_process
+                    .execSync('git rev-parse --abbrev-ref HEAD')
+                    .toString(),
+                remotes: [
+                    {
+                        name: 'origin',
+                        url: child_process
+                            .execSync('git config --get remote.origin.url')
+                            .toString(),
+                    },
+                ],
+            };
         }
     }
 }
