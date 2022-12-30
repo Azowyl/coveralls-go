@@ -1,6 +1,7 @@
 import axios from 'axios';
 import LcovToCoverallsParser from './parsers/lcov';
 import FormData from 'form-data';
+import { camelToSnake } from './utils';
 
 class Coveralls {
     async submitFromLcov(lcovFilePath: string): Promise<void> {
@@ -9,7 +10,9 @@ class Coveralls {
         );
         coverallsRequestBuilder.withService('circleci');
 
-        const coverallsRequestObject = coverallsRequestBuilder.build();
+        const coverallsRequestObject = camelToSnake(
+            coverallsRequestBuilder.build()
+        );
         console.log('Posting to coveralls:', coverallsRequestObject);
 
         const formData = new FormData();

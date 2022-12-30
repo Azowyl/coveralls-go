@@ -1,7 +1,7 @@
 import * as FileUtils from './file';
 import Environment from './environment';
 
-interface CoverallsSourceFile {
+export interface CoverallsSourceFile {
     name: string;
     sourceDigest: string;
     coverage: Array<number | null>;
