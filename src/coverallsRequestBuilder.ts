@@ -1,6 +1,23 @@
 import * as FileUtils from './file';
 import Environment from './environment';
 
+// interface CoverallsGitInfo {
+//     head: {
+//         id: string;
+//         authorName: string;
+//         authorEmail: string;
+//         committerName: string;
+//         committerEmail: string;
+//         message: string;
+//     }
+//
+//     branch: string;
+//     remotes: Array<{
+//         name: string;
+//         url: string;
+//     }>
+// }
+
 export interface CoverallsSourceFile {
     name: string;
     sourceDigest: string;
@@ -12,7 +29,8 @@ export interface CoverallsRequestObject {
     serviceName: string;
     repoToken: string;
     servicePullRequest: string;
-    commitSha: string;
+    commitSha?: string;
+    git?: string;
     sourceFiles: CoverallsSourceFile[];
 }
 
@@ -58,8 +76,6 @@ class CoverallsRequestBuilder {
             this.requestObject.serviceJobId = Environment.CIRCLE_BUILD_NUM;
             this.requestObject.servicePullRequest =
                 Environment.CIRCLE_PULL_REQUEST_ID;
-            this.requestObject.servicePullRequest =
-                Environment.CIRCLE_COMMIT_SHA;
             this.requestObject.commitSha = Environment.CIRCLE_COMMIT_SHA;
         }
     }
