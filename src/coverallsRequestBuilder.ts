@@ -97,6 +97,10 @@ class CoverallsRequestBuilder {
                     },
                 ],
             };
+        } else {
+            throw new Error(
+                'Looks like this is not a circleci environment, currently only builds from circleci are supported. Feel free to submit a PR with your desired service integration'
+            );
         }
     }
 }

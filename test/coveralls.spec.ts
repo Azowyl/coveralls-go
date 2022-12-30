@@ -68,5 +68,24 @@ describe('Coveralls', () => {
                 itMakesRequestToCoverallsWithCorrectParams();
             });
         });
+
+        describe('with no circleci environment', () => {
+            beforeEach(() => {
+                Environment.CIRCLECI = false;
+            });
+
+            it('reports error', async () => {
+                await expect(
+                    async () =>
+                        await coveralls.submitFromLcov(
+                            require.resolve(
+                                './fixtures/repo/coverage/lcov.info'
+                            )
+                        )
+                ).rejects.toMatchInlineSnapshot(
+                    `[Error: Looks like this is not a circleci environment, currently only builds from circleci are supported. Feel free to submit a PR with your desired service integration]`
+                );
+            });
+        });
     });
 });
