@@ -24,7 +24,8 @@ class LcovToCoverallsParser implements CoverallsParser {
                 this.getLinesCoverage(
                     data.lines,
                     FileUtils.linesCount(data.file)
-                )
+                ),
+                this.getBranchesData(data.branches)
             );
         });
 
@@ -44,6 +45,17 @@ class LcovToCoverallsParser implements CoverallsParser {
         });
 
         return coverage;
+    }
+
+    private getBranchesData(branchesData: LCOVRecord['branches']): number[] {
+        return branchesData.details
+            .map((branchData) => [
+                branchData.line,
+                branchData.block,
+                branchData.branch,
+                branchData.taken,
+            ])
+            .flat();
     }
 }
 

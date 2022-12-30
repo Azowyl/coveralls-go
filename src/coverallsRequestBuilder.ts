@@ -23,6 +23,7 @@ export interface CoverallsSourceFile {
     name: string;
     sourceDigest: string;
     coverage: Array<number | null>;
+    branches: number[];
 }
 
 export interface CoverallsRequestObject {
@@ -54,12 +55,14 @@ class CoverallsRequestBuilder {
 
     withSourceFile(
         filePath: string,
-        coverage: Array<number | null>
+        coverage: Array<number | null>,
+        branches: number[]
     ): CoverallsRequestBuilder {
         this.requestObject.sourceFiles = this.requestObject.sourceFiles.concat({
             name: filePath,
             sourceDigest: FileUtils.md5Digest(filePath),
             coverage,
+            branches,
         });
 
         return this;
