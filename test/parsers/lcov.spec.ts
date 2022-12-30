@@ -3,6 +3,12 @@ import LcovToCoverallsParser from '../../src/parsers/lcov';
 jest.mock('js-md5', () => ({
     digest: jest.fn().mockReturnValue('sourceDigest'),
 }));
+jest.mock('../../src/git', () => ({
+    commiterName: jest.fn().mockReturnValue('test'),
+    commitMessage: jest.fn().mockReturnValue('test'),
+    currentBranch: jest.fn().mockReturnValue('test'),
+    originRemote: jest.fn().mockReturnValue('test'),
+}));
 
 describe('LcovToCoverallsParser', () => {
     let parser: LcovToCoverallsParser;

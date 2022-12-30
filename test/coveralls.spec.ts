@@ -7,6 +7,12 @@ jest.mock('axios');
 jest.mock('js-md5', () => ({
     digest: jest.fn().mockReturnValue('sourceDigest'),
 }));
+jest.mock('../src/git', () => ({
+    commiterName: jest.fn().mockReturnValue('test'),
+    commitMessage: jest.fn().mockReturnValue('test'),
+    currentBranch: jest.fn().mockReturnValue('test'),
+    originRemote: jest.fn().mockReturnValue('test'),
+}));
 
 describe('Coveralls', () => {
     let coveralls: Coveralls;
@@ -16,7 +22,7 @@ describe('Coveralls', () => {
         coveralls = new Coveralls();
     });
 
-    const itMakesRequestWithCorrectParams = (): void =>
+    const itMakesRequestToCoverallsWithCorrectParams = (): void =>
         it('makes request to coveralls with correct params', async () => {
             await coveralls.submitFromLcov(
                 require.resolve('./fixtures/repo/coverage/lcov.info')
@@ -35,7 +41,7 @@ describe('Coveralls', () => {
         });
 
     describe('submitFromLcov', () => {
-        describe('with PR circleci environment', () => {
+        describe('with circleci environment', () => {
             beforeEach(() => {
                 Environment.CIRCLECI = true;
                 Environment.CIRCLE_BUILD_NUM = '1';
@@ -46,15 +52,21 @@ describe('Coveralls', () => {
                 Environment.CIRCLE_AUTHOR = 'test';
             });
 
-            itMakesRequestWithCorrectParams();
-        });
+            describe('within PR', () => {
+                beforeEach(() => {
+                    Environment.CIRCLE_PULL_REQUEST_ID = '123';
+                });
 
-        describe('with no PR circleci environment', () => {
-            beforeEach(() => {
-                Environment.CIRCLE_PULL_REQUEST_ID = '';
+                itMakesRequestToCoverallsWithCorrectParams();
             });
 
-            itMakesRequestWithCorrectParams();
+            describe('within no PR', () => {
+                beforeEach(() => {
+                    Environment.CIRCLE_PULL_REQUEST_ID = '';
+                });
+
+                itMakesRequestToCoverallsWithCorrectParams();
+            });
         });
     });
 });
