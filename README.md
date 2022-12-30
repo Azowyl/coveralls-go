@@ -1,4 +1,4 @@
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Azowyl/coveralls-go/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Azowyl/coveralls-go/tree/main) [![Coverage Status](https://coveralls.io/repos/github/Azowyl/coveralls-go/badge.svg?branch=main)](https://coveralls.io/github/Azowyl/coveralls-go?branch=main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Azowyl/coveralls-go/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/Azowyl/coveralls-go/tree/main) [![Coverage Status](https://coveralls.io/repos/github/Azowyl/coveralls-go/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/Azowyl/coveralls-go?branch=main)
 
 ## Coveralls go
 
