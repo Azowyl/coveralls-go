@@ -2,7 +2,7 @@
 
 exports[`Coveralls submitFromLcov with circleci environment within PR makes request to coveralls with correct params 1`] = `
 [
-  "{"service_job_id":"1","service_name":"circleci","repo_token":"token","service_pull_request":"123","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}],"git":{"head":{"id":"0d15c65a92b7c3642883a528da8dd4841accde21","author_name":"test","committer_name":"test","message":"test"},"branch":"test","remotes":[{"name":"origin","url":"test"}]}}",
+  "{"service_job_id":"1","service_name":"circleci","repo_token":"token","service_pull_request":"2","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}],"git":{"head":{"id":"0d15c65a92b7c3642883a528da8dd4841accde21","author_name":"test","committer_name":"test","message":"test"},"branch":"test","remotes":[{"name":"origin","url":"test"}]}}",
 ]
 `;
 

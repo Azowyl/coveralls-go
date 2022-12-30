@@ -47,14 +47,14 @@ describe('Coveralls', () => {
                 Environment.CIRCLE_BUILD_NUM = '1';
                 Environment.CIRCLE_COMMIT_SHA =
                     '0d15c65a92b7c3642883a528da8dd4841accde21';
-                Environment.CIRCLE_PULL_REQUEST_ID = '123';
                 Environment.REPO_TOKEN = 'token';
                 Environment.CIRCLE_AUTHOR = 'test';
             });
 
             describe('within PR', () => {
                 beforeEach(() => {
-                    Environment.CIRCLE_PULL_REQUEST_ID = '123';
+                    Environment.CIRCLE_PULL_REQUEST =
+                        'https://github.com/Azowyl/coveralls-go/pull/2';
                 });
 
                 itMakesRequestToCoverallsWithCorrectParams();
@@ -62,7 +62,7 @@ describe('Coveralls', () => {
 
             describe('within no PR', () => {
                 beforeEach(() => {
-                    Environment.CIRCLE_PULL_REQUEST_ID = '';
+                    Environment.CIRCLE_PULL_REQUEST = undefined;
                 });
 
                 itMakesRequestToCoverallsWithCorrectParams();

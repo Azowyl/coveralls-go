@@ -30,7 +30,7 @@ export interface CoverallsRequestObject {
     serviceJobId: string;
     serviceName: string;
     repoToken: string;
-    servicePullRequest: string;
+    servicePullRequest?: string;
     commitSha?: string;
     git?: CoverallsGitInfo;
     sourceFiles: CoverallsSourceFile[];
@@ -78,8 +78,10 @@ class CoverallsRequestBuilder {
 
         if (Environment.CIRCLECI) {
             this.requestObject.serviceJobId = Environment.CIRCLE_BUILD_NUM;
-            this.requestObject.servicePullRequest =
-                Environment.CIRCLE_PULL_REQUEST_ID;
+            if (Environment.CIRCLE_PULL_REQUEST != null) {
+                this.requestObject.servicePullRequest =
+                    Environment.CIRCLE_PULL_REQUEST.split('/').pop() as string;
+            }
             this.requestObject.git = {
                 head: {
                     id: Environment.CIRCLE_COMMIT_SHA,
