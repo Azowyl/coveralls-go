@@ -1,11 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Coveralls submitFromLcov with PR circleci environment makes request to coveralls with correct params 1`] = `
-[
-  "{"service_job_id":"1","service_name":"circleci","repo_token":"token","service_pull_request":"123","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}],"git":{"head":{"id":"0d15c65a92b7c3642883a528da8dd4841accde21","author_name":"test","committer_name":"test","message":"test"},"branch":"test","remotes":[{"name":"origin","url":"test"}]}}",
-]
-`;
-
 exports[`Coveralls submitFromLcov with circleci environment within PR makes request to coveralls with correct params 1`] = `
 [
   "{"service_job_id":"1","service_name":"circleci","repo_token":"token","service_pull_request":"123","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}],"git":{"head":{"id":"0d15c65a92b7c3642883a528da8dd4841accde21","author_name":"test","committer_name":"test","message":"test"},"branch":"test","remotes":[{"name":"origin","url":"test"}]}}",
@@ -15,11 +9,5 @@ exports[`Coveralls submitFromLcov with circleci environment within PR makes requ
 exports[`Coveralls submitFromLcov with circleci environment within no PR makes request to coveralls with correct params 1`] = `
 [
   "{"service_job_id":"1","service_name":"circleci","repo_token":"token","service_pull_request":"","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}],"git":{"head":{"id":"0d15c65a92b7c3642883a528da8dd4841accde21","author_name":"test","committer_name":"test","message":"test"},"branch":"test","remotes":[{"name":"origin","url":"test"}]}}",
-]
-`;
-
-exports[`Coveralls submitFromLcov with no PR circleci environment makes request to coveralls with correct params 1`] = `
-[
-  "{"service_job_id":"","service_name":"circleci","service_pull_request":"","commit_sha":"","source_files":[{"name":"test/fixtures/repo/src/covered.ts","source_digest":"sourceDigest","coverage":[null,1,1,null,0,null,null,null,null,null],"branches":[1,0,0,1,2,1,0,1,2,1,1,0]},{"name":"test/fixtures/repo/src/uncovered.ts","source_digest":"sourceDigest","coverage":[null,0,null,null,null,null],"branches":[]}]}",
 ]
 `;
