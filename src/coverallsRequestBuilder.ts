@@ -1,6 +1,6 @@
 import * as FileUtils from './file';
 import Environment from './environment';
-import * as child_process from 'child_process';
+import GitUtils from './git';
 
 interface CoverallsGitInfo {
     head: {
@@ -81,19 +81,14 @@ class CoverallsRequestBuilder {
                 head: {
                     id: Environment.CIRCLE_COMMIT_SHA,
                     authorName: Environment.CIRCLE_AUTHOR,
-                    message: child_process
-                        .execSync('git log -1 --pretty=%B')
-                        .toString(),
+                    committerName: GitUtils.commiterName(),
+                    message: GitUtils.commitMessage(),
                 },
-                branch: child_process
-                    .execSync('git rev-parse --abbrev-ref HEAD')
-                    .toString(),
+                branch: GitUtils.currentBranch(),
                 remotes: [
                     {
                         name: 'origin',
-                        url: child_process
-                            .execSync('git config --get remote.origin.url')
-                            .toString(),
+                        url: GitUtils.originRemote(),
                     },
                 ],
             };
