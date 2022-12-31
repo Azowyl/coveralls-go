@@ -42,6 +42,17 @@ jobs:
             - run:
                   name: 'Run tests'
                   command: 'yarn test:ci'
+    publish:
+        executor: node/default
+        steps:
+            - attach_workspace:
+                  at: .
+            - run:
+                  name: 'Create production package'
+                  command: 'yarn build'
+            - run:
+                  name: 'Publish to npm'
+                  command: 'yarn publish'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -58,3 +69,26 @@ workflows:
             - test:
                   requires:
                       - prettier
+    prod:
+        jobs:
+            - install
+            - lint:
+                  requires:
+                      - install
+            - prettier:
+                  requires:
+                      - lint
+            - test:
+                  requires:
+                      - prettier
+            - authorize:
+                  type: approval
+                  requires:
+                      - test
+                  only:
+                      - /main/
+            - publish:
+                  requires:
+                      - authorize
+                  only:
+                      - /main/
