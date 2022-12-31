@@ -85,10 +85,12 @@ workflows:
                   type: approval
                   requires:
                       - test
-                  only:
+                  branches:
+                    only:
                       - /main/
             - publish:
                   requires:
                       - authorize
-                  only:
+                  branches:
+                    only:
                       - /main/
