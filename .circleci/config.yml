@@ -57,19 +57,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-    dev:
-        jobs:
-            - install
-            - lint:
-                  requires:
-                      - install
-            - prettier:
-                  requires:
-                      - lint
-            - test:
-                  requires:
-                      - prettier
-    prod:
+    main:
         jobs:
             - install
             - lint:
@@ -85,12 +73,14 @@ workflows:
                   type: approval
                   requires:
                       - test
-                  branches:
-                    only:
-                      - /main/
+                  filters:
+                      branches:
+                          only:
+                              - /main/
             - publish:
                   requires:
                       - authorize
-                  branches:
-                    only:
-                      - /main/
+                  filters:
+                      branches:
+                          only:
+                              - /main/
