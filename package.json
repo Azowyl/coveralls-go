@@ -33,8 +33,7 @@
         "test": "jest",
         "test:ci": "jest --ci --runInBand --coverage && coveralls-go",
         "lint": "yarn eslint .",
-        "prettier": "prettier --check .",
-        "publish": "npm publish"
+        "prettier": "prettier --check ."
     },
     "devDependencies": {
         "@babel/core": "^7.20.7",
