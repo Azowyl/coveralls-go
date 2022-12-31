@@ -52,7 +52,9 @@ jobs:
                   command: 'yarn build'
             - run:
                   name: 'Publish to npm'
-                  command: 'yarn publish'
+                  command: |
+                      npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+                      yarn publish
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
