@@ -1,6 +1,6 @@
 {
     "name": "coveralls-go",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "coveralls node integration",
     "main": "src/index.js",
     "files": [
