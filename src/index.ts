@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Coveralls from './coveralls';
 import path from 'path';
 
